@@ -33,7 +33,17 @@ public class NbQuickCheck {
    * @return the minimum value in the tree or Integer.MAX_VALUE if root is null
    */
   public static int minVal(Node<Integer> root) {
-    
+    if (root == null) {
+      return Integer.MAX_VALUE;
+    }
+    int smallest = root.value;
+    for (Node<Integer> child : root.children) {
+      int childMin = minVal(child);
+      if (childMin < smallest) {
+        smallest = childMin;
+      }
+    }
+    return smallest;
   }
   
   public static void main(String[] args) {
